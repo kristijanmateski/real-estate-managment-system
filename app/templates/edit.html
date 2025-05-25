@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a href="{% url 'index' %}"><img src="{% static 'Files/logo.png' %}" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            </ul>
+            <form class="d-flex" role="search">
+                <a href="#" style="margin-left: 10px;color: black;text-decoration: none;padding: 10px">About</a>
+                <a href="#" style="margin-left: 10px;color: black;text-decoration: none;padding: 10px">Projects</a>
+                <a href="#" style="margin-left: 10px;color: black;text-decoration: none;padding: 10px">Services</a>
+                <a href="#" style="margin-left: 10px;color: black;text-decoration: none;padding: 10px">Contacts</a>
+                <a href="#"
+                   style="margin-left: 10px; background-color:black; color: white;text-decoration: none; padding: 10px">Contact
+                    me</a>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container py-4">
+    <div class="row">
+        <div class="col-6">
+            <h1>EDIT: {{ house.name }}</h1>
+        </div>
+        <div class="col-6">
+            <img src="{{MEDIA_URL}}{{ house.image.url }}" alt="cover">
+        </div>
+    </div>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-dark w-100">Save</button>
+    </form>
+
+</div>
+</body>
+</html>

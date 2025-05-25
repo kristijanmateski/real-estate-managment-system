@@ -1,0 +1,100 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a href="{% url 'index' %}"><img src="{% static 'Files/logo.png' %}" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            </ul>
+            <form class="d-flex" role="search">
+                <a href="#" style="margin-left: 10px;color: black;text-decoration: none;padding: 10px">About</a>
+                <a href="#" style="margin-left: 10px;color: black;text-decoration: none;padding: 10px">Projects</a>
+                <a href="#" style="margin-left: 10px;color: black;text-decoration: none;padding: 10px">Services</a>
+                <a href="#" style="margin-left: 10px;color: black;text-decoration: none;padding: 10px">Contacts</a>
+                <a href="#"
+                   style="margin-left: 10px; background-color:black; color: white;text-decoration: none; padding: 10px">Contact
+                    me</a>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6" style="padding-top:80px">
+            <h1>Architecture</h1>
+            <h1 style="color: gray">Bureau</h1>
+        </div>
+        <div class="col">
+            <img src="{% static 'Files/stone1 (1).jpg' %}" alt="">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <img src="{% static 'Files/house4.jpg' %}" alt="">
+        </div>
+        <div class="col m-5">
+            <p style="color: gray">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                but also the leap into electronic typesetting, remaining essentially </p>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4">
+    <h1 class="text-center">We offer variety of projects</h1>
+    <ul class="d-flex justify-content-between p-0" style="list-style: none; width: 100%; max-width: 100%;">
+        <li class="flex-fill text-center py-2" style="border-bottom: 3px solid black;">All houses</li>
+        <li class="flex-fill text-center py-2 text-muted" style="border-bottom: 1px solid gray;">Stone houses</li>
+        <li class="flex-fill text-center py-2 text-muted" style="border-bottom: 1px solid gray;">Frame houses</li>
+    </ul>
+
+    <div class="row">
+    {% if houses %}
+        {% for house in houses %}
+            <div class="col-4">
+                <div class="card rounded-0" style="width: 26rem; height: 500px;background-color: whitesmoke;border: none">
+                    <img src="{{ MEDIA_URL }}{{ house.house.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body my-4 p-4">
+                        <h5 class="card-title">{{ house.house.name }}</h5>
+                        <div class="d-flex justify-content-between">
+                            <p>Area</p>
+                            <p>{{ house.house.area }} sqm</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <p>Price</p>
+                            <p>{{ house.price }} $</p>
+                        </div>
+                        <a href="{% url 'edit' house.house.id %}" class="btn btn-dark">Edit</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h4 class="text-center m-10">No estates here.</h4>
+    {% endif %}
+    </div>
+
+</div>
+
+
+</body>
+</html>
